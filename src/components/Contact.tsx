@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState, useContext } from 'react';
-import { LanguageContext } from '../app/layout';
+import { LanguageContext, DarkModeContext } from '../components/context';
 
 const Contact: React.FC = () => {
   const { language } = useContext(LanguageContext);
+  const { darkMode } = useContext(DarkModeContext);
 
   const texts = {
     en: {
@@ -45,8 +46,13 @@ const Contact: React.FC = () => {
     message: '',
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const [success, setSuccess] = useState(false);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setErrors({ ...errors, [e.target.name]: '' }); // Clear the error when user starts typing
   };
 
   const validate = () => {
@@ -76,28 +82,33 @@ const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      alert(currentText.successMessage);
-      // Lähtestab vormi andmed ja vead pärast edukat sõnumi saatmist
+      setSuccess(true);
       setFormData({
         name: '',
         email: '',
         message: '',
       });
-      setErrors({
-        name: '',
-        email: '',
-        message: '',
-      });
+      setTimeout(() => setSuccess(false), 5000); // Hide success message after 5 seconds
     }
   };
 
   return (
-    <section id="contact" className="bg-gray-100 dark:bg-gray-800 py-16 px-8">
-      <h2 className="text-4xl font-bold mb-12 text-center text-gray-800 dark:text-yellow-200">
+    <section
+      id="contact"
+      className={`py-20 px-10 transition-all duration-700 ${
+        darkMode ? 'bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-yellow-100' : 'bg-gradient-to-b from-blue-50 via-blue-200 to-white text-gray-900'
+      }`}
+    >
+      <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-12 tracking-wide leading-snug">
         {currentText.title}
       </h2>
-      <div className="max-w-lg mx-auto bg-white dark:bg-gray-900 p-8 rounded-lg shadow-md">
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+      <div className="max-w-2xl mx-auto bg-white dark:bg-gray-700 p-10 rounded-lg shadow-lg transition-all duration-500">
+        {success && (
+          <div className="mb-6 text-green-500 font-bold text-lg">
+            {currentText.successMessage}
+          </div>
+        )}
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-6">
           <input
             type="text"
             name="name"
@@ -106,9 +117,12 @@ const Contact: React.FC = () => {
             placeholder={currentText.namePlaceholder}
             autoComplete="name"
             className="p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-yellow-500 transition-colors duration-300"
-            required
           />
-          {errors.name && <span className="text-red-500 dark:text-yellow-500">{errors.name}</span>}
+          {errors.name && (
+            <span className="text-red-500 dark:text-yellow-500">
+              {errors.name}
+            </span>
+          )}
           <input
             type="email"
             name="email"
@@ -117,9 +131,12 @@ const Contact: React.FC = () => {
             placeholder={currentText.emailPlaceholder}
             autoComplete="email"
             className="p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-yellow-500 transition-colors duration-300"
-            required
           />
-          {errors.email && <span className="text-red-500 dark:text-yellow-500">{errors.email}</span>}
+          {errors.email && (
+            <span className="text-red-500 dark:text-yellow-500">
+              {errors.email}
+            </span>
+          )}
           <textarea
             name="message"
             value={formData.message}
@@ -127,12 +144,15 @@ const Contact: React.FC = () => {
             placeholder={currentText.messagePlaceholder}
             autoComplete="off"
             className="p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-yellow-500 h-32 resize-none transition-colors duration-300"
-            required
           />
-          {errors.message && <span className="text-red-500 dark:text-yellow-500">{errors.message}</span>}
+          {errors.message && (
+            <span className="text-red-500 dark:text-yellow-500">
+              {errors.message}
+            </span>
+          )}
           <button
             type="submit"
-            className="bg-blue-500 dark:bg-yellow-500 text-white dark:text-black py-4 px-8 rounded-md font-semibold hover:bg-blue-600 dark:hover:bg-yellow-600 hover:scale-105 transform transition-transform duration-300 ease-in-out"
+            className="bg-blue-500 dark:bg-yellow-500 text-white dark:text-black py-4 px-8 rounded-md font-semibold hover:bg-blue-700 dark:hover:bg-yellow-500 hover:scale-105 transform transition-transform duration-300 ease-in-out"
           >
             {currentText.sendButton}
           </button>

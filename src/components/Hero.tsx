@@ -2,7 +2,7 @@
 
 import React, { useContext } from 'react';
 import Image from 'next/image';
-import { DarkModeContext, LanguageContext } from '../app/layout'; // Muudetud importimise tee
+import { DarkModeContext, LanguageContext } from '../components/context';
 
 const Hero: React.FC = () => {
   const { darkMode } = useContext(DarkModeContext);
@@ -25,30 +25,36 @@ const Hero: React.FC = () => {
 
   return (
     <section
-      className={`relative ${
-        darkMode ? 'bg-gray-900' : 'bg-gradient-to-r from-blue-400 to-blue-500'
-      } text-white h-screen flex flex-col justify-center items-center transition-all duration-500`}
+      className={`relative flex flex-col items-center justify-center min-h-screen p-8 md:p-16 transition-all duration-500 ${
+        darkMode ? 'bg-gray-900 text-white' : 'bg-blue-50 text-gray-800'
+      }`}
     >
-      <Image
-        src={darkMode ? "/images/coding-image2.jpg" : "/images/coding-image.jpg"}
-        alt="Koodimise pilt"
-        fill
-        loading="lazy"
-        className={`absolute inset-0 w-full h-full object-cover object-center ${
-          darkMode ? 'opacity-20' : 'opacity-30'
-        } transition-opacity duration-500`}
-      />
-      <div className="relative z-10 text-center">
-        <h1 className="text-5xl font-bold mb-4">{currentText.title}</h1>
-        <p className="text-2xl mb-8">{currentText.subtitle}</p>
+      <div className="relative z-10 text-center max-w-3xl space-y-8 mt-16">
+        <h1 className="text-6xl md:text-7xl font-extrabold leading-tight tracking-wide animate-fade-in">
+          {currentText.title}
+        </h1>
+        <p className="text-xl md:text-3xl font-light animate-fade-in delay-150">
+          {currentText.subtitle}
+        </p>
         <a
           href="https://github.com/frediraba?tab=repositories"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-white text-blue-500 px-6 py-3 rounded-md font-semibold transition duration-300 transform hover:scale-105 hover:bg-purple-500 hover:text-white"
+          className="inline-block bg-gradient-to-r from-teal-400 to-blue-500 text-white px-10 py-4 rounded-full font-semibold shadow-md transition duration-300 transform hover:scale-105 hover:shadow-xl animate-bounce-once"
         >
           {currentText.buttonText}
         </a>
+      </div>
+      <div className="absolute inset-0 overflow-hidden">
+        <Image
+          src={darkMode ? "/images/coding-image2.jpg" : "/images/coding-image.jpg"}
+          alt="Koodimise pilt"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center"
+          loading="lazy"
+          className="opacity-30"
+        />
       </div>
     </section>
   );
