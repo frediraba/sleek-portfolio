@@ -117,58 +117,32 @@ export default function RootLayout({
               </div>
               <nav className="flex-grow flex justify-center items-center space-x-8">
                 <div className="flex space-x-10">
-                  <ScrollLink
-                    to="about"
-                    smooth={true}
-                    duration={500}
-                    spy={true}
-                    className={`text-lg font-semibold cursor-pointer transition-colors ${
-                      activeSection === 'about'
-                        ? 'text-blue-800 dark:text-yellow-300'
-                        : 'text-blue-500 dark:text-yellow-500'
-                    }`}
-                  >
-                    {language === 'ee' ? 'Minust' : 'About'}
-                  </ScrollLink>
-                  <ScrollLink
-                    to="projects"
-                    smooth={true}
-                    duration={500}
-                    spy={true}
-                    className={`text-lg font-semibold cursor-pointer transition-colors ${
-                      activeSection === 'projects'
-                        ? 'text-blue-800 dark:text-yellow-300'
-                        : 'text-blue-500 dark:text-yellow-500'
-                    }`}
-                  >
-                    {language === 'ee' ? 'Projektid' : 'Projects'}
-                  </ScrollLink>
-                  <ScrollLink
-                    to="skills"
-                    smooth={true}
-                    duration={500}
-                    spy={true}
-                    className={`text-lg font-semibold cursor-pointer transition-colors ${
-                      activeSection === 'skills'
-                        ? 'text-blue-800 dark:text-yellow-300'
-                        : 'text-blue-500 dark:text-yellow-500'
-                    }`}
-                  >
-                    {language === 'ee' ? 'Oskused' : 'Skills'}
-                  </ScrollLink>
-                  <ScrollLink
-                    to="contact"
-                    smooth={true}
-                    duration={500}
-                    spy={true}
-                    className={`text-lg font-semibold cursor-pointer transition-colors ${
-                      activeSection === 'contact'
-                        ? 'text-blue-800 dark:text-yellow-300'
-                        : 'text-blue-500 dark:text-yellow-500'
-                    }`}
-                  >
-                    {language === 'ee' ? 'E-mail' : 'Contact'}
-                  </ScrollLink>
+                  {['about', 'projects', 'skills', 'contact'].map((section) => (
+                    <ScrollLink
+                      key={section}
+                      to={section}
+                      smooth={true}
+                      duration={500}
+                      spy={true}
+                      className={`text-lg font-semibold cursor-pointer transition-colors ${
+                        activeSection === section
+                          ? 'text-blue-800 dark:text-yellow-300'
+                          : 'text-blue-500 dark:text-yellow-500'
+                      } hover:text-blue-800 dark:hover:text-yellow-300`}
+                    >
+                      {language === 'ee' ? (
+                        section === 'about'
+                          ? 'Minust'
+                          : section === 'projects'
+                          ? 'Projektid'
+                          : section === 'skills'
+                          ? 'Oskused'
+                          : 'E-mail'
+                      ) : (
+                        section.charAt(0).toUpperCase() + section.slice(1)
+                      )}
+                    </ScrollLink>
+                  ))}
                 </div>
               </nav>
               <div className="flex items-center space-x-3">
@@ -180,10 +154,10 @@ export default function RootLayout({
                   )}
                 </button>
                 <a href="https://linkedin.com/in/frediraba" target="_blank" rel="noopener noreferrer" className="p-1">
-                  <FaLinkedin className="h-5 w-5 text-blue-500 dark:text-yellow-500 hover:text-blue-700 dark:hover:text-yellow-300 transition-colors" />
+                  <FaLinkedin className="h-6 w-6 text-blue-500 dark:text-yellow-500 hover:text-blue-700 dark:hover:text-yellow-300 transition-colors" />
                 </a>
                 <a href="https://github.com/frediraba" target="_blank" rel="noopener noreferrer" className="p-1">
-                  <FaGithub className="h-5 w-5 text-blue-500 dark:text-yellow-500 hover:text-blue-700 dark:hover:text-yellow-300 transition-colors" />
+                  <FaGithub className="h-6 w-6 text-blue-500 dark:text-yellow-500 hover:text-blue-700 dark:hover:text-yellow-300 transition-colors" />
                 </a>
               </div>
             </header>

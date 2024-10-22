@@ -31,7 +31,7 @@ const About: React.FC = () => {
           alt="Fredi Raba"
           width={400}
           height={400}
-          priority
+          loading="lazy"
           className="rounded-full shadow-lg animate-slide-in"
         />
         <div className="max-w-md text-center md:text-left">

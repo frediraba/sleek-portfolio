@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sleek Portfolio - Fredi Raba
 
-## Getting Started
+## Ülevaade
 
-First, run the development server:
+Sleek Portfolio on kaasaegne ja interaktiivne veebiarenduse portfoolio, mille eesmärk on esitleda Fredi Raba projekte ja oskusi. Veebisait on loodud kasutades uusimaid veebiarenduse tehnoloogiaid, pakkudes suurepärast kasutajakogemust, sealhulgas keele valik (Eesti ja Inglise keel) ja tumerežiim.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Funktsionaalsus
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Tume ja hele režiim**: Kasutajad saavad valida tumeda või heleda režiimi, et sobitada oma eelistustega.
+- **Keelevahetus**: Leht toetab kahte keelt - eesti ja inglise keel. Kasutajad saavad veebilehe sisu muuta vajutades keelevalikule.
+- **Sujuv liikumine**: Menüüs klikkides liigub leht sujuvalt soovitud sektsioonidesse.
+- **Animatsioonid ja dünaamilised efektid**: Oskused sektsioonis protsendid täituvad ainult siis, kui kasutaja jõuab sellele sektsioonile. Animatsioonid ja liikumine on loodud kasutajate tähelepanu püüdmiseks.
+- **Kontaktivorm**: Kasutajad saavad hõlpsasti jätta sõnumi, täites kontaktivormi, mis tühjendab sisendi pärast edukat saatmist.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Sektsioonid
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Minust** - Tutvustab Fred Raba kui kirglikku veebiarendajat.
+2. **Projektid** - Esitleb interaktiivseid projekte, sealhulgas AI-põhine ilmarakendus, Virtuaalne Portfell, ja E-kaubanduse Tootekaardid.
+3. **Oskused** - Kuvab tehnilised oskused ja nende taseme interaktiivsete täitebaaridega.
+4. **Võta Minuga Ühendust** - Kontaktivorm, et kasutajad saaksid Fredi Raba-ga ühendust võtta.
 
-## Learn More
+## Kasutatud Tehnoloogiad
+- **Next.js** - Veebiraamistik, mis võimaldab serveripoolset renderdamist ja lihtsat veebirakenduste loomist.
+- **React** - JavaScripti teek, kasutajaliideste loomiseks.
+- **Tailwind CSS** - Stiilide jaoks, mis pakub kiiret ja kohandatavat CSS-i raamistiku.
+- **TypeScript** - Staatiliselt tüübitud JavaScript, mis muudab arenduse usaldusväärsemaks.
 
-To learn more about Next.js, take a look at the following resources:
+## Paigaldus ja Kasutamine
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Eeltingimused
+- Node.js (soovitatavalt viimane versioon)
+- npm või yarn (paketihaldur)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Paigaldus
+1. **Klooni see repository**
+   ```bash
+   git clone https://github.com/frediraba/sleek-portfolio.git
+   ```
+2. **Liigu projekti kausta**
+   ```bash
+   cd sleek-portfolio
+   ```
+3. **Paigalda sõltuvused**
+   ```bash
+   npm install
+   ```
+   või
+   ```bash
+   yarn install
+   ```
+4. **Käivita arendusserver**
+   ```bash
+   npm run dev
+   ```
+   või
+   ```bash
+   yarn dev
+   ```
+5. Ava oma veebibrauseris [http://localhost:3000](http://localhost:3000) ja näe veebilehte.
 
-## Deploy on Vercel
+## Korduma Kippuvad Küsimused
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Kuidas muuta veebilehe sisu?**
+   - Veebilehe sisu saab muuta failides, mis asuvad `src/components` kaustas. Näiteks `Hero.tsx`, `About.tsx`, `Projects.tsx` ja `Contact.tsx`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. **Kuidas lisada uusi projekte?**
+   - Uued projektid saab lisada `Projects.tsx` failis, täiendades `projects` massiivi, lisades uue objekti projekti pealkirja, kirjelduse ja pildi URL-iga.
+
+## Kontakt
+Kui sul on küsimusi või ettepanekuid, võta ühendust Fredi Raba'ga [LinkedInis](https://linkedin.com/in/frediraba) või saada mulle sõnum läbi minu veebilehe.
+
+---
+**Autor**: Fredi Raba  
+**GitHub**: [frediraba](https://github.com/frediraba)
