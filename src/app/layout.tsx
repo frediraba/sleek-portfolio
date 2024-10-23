@@ -87,9 +87,9 @@ export default function RootLayout({
                             spy={true}
                             className={`text-lg font-semibold cursor-pointer transition-colors ${
                               activeSection === section
-                                ? 'text-blue-900 dark:text-yellow-300'
+                                ? 'text-blue-800 dark:text-yellow-300'
                                 : 'text-blue-500 dark:text-yellow-500'
-                            } hover:text-blue-900 dark:hover:text-yellow-300`}
+                            } hover:text-blue-800 dark:hover:text-yellow-300`}
                           >
                             {language === 'ee' ? (
                               section === 'about'
