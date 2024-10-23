@@ -71,7 +71,7 @@ export default function RootLayout({
                     <div className="flex items-center space-x-3">
                       <button onClick={toggleLanguage} className="p-1 transition flex items-center space-x-1">
                         <GlobeAltIcon className="h-6 w-6 text-blue-500 dark:text-yellow-500" />
-                        <span className="text-lg font-semibold text-blue-500 dark:text-yellow-500">
+                        <span className="text-lg font-semibold text-blue-500 dark:text-yellow-400">
                           {language === 'ee' ? 'EE' : 'EN'}
                         </span>
                       </button>
@@ -87,9 +87,9 @@ export default function RootLayout({
                             spy={true}
                             className={`text-lg font-semibold cursor-pointer transition-colors ${
                               activeSection === section
-                                ? 'text-blue-900 dark:text-yellow-200'
+                                ? 'text-blue-900 dark:text-yellow-300'
                                 : 'text-blue-500 dark:text-yellow-500'
-                            } hover:text-blue-900 dark:hover:text-yellow-200`}
+                            } hover:text-blue-900 dark:hover:text-yellow-300`}
                           >
                             {language === 'ee' ? (
                               section === 'about'

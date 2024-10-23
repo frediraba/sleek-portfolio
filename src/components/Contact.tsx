@@ -152,7 +152,7 @@ const Contact: React.FC = () => {
           )}
           <button
             type="submit"
-            className="bg-blue-500 dark:bg-yellow-500 text-white dark:text-black py-4 px-8 rounded-md font-semibold hover:bg-blue-700 dark:hover:bg-yellow-500 hover:scale-105 transform transition-transform duration-300 ease-in-out"
+            className="bg-blue-500 dark:bg-yellow-400 text-white dark:text-black py-4 px-8 rounded-md font-semibold hover:bg-blue-700 dark:hover:bg-yellow-400 hover:scale-105 transform transition-transform duration-300 ease-in-out"
           >
             {currentText.sendButton}
           </button>
