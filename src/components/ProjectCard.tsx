@@ -16,8 +16,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, imageUrl 
         <Image
           src={imageUrl}
           alt={title}
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: 'cover' }}
+          loading="lazy"
           className="rounded-t-lg transition-opacity duration-500 hover:opacity-90"
         />
       </div>
@@ -37,4 +38,3 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, imageUrl 
 };
 
 export default ProjectCard;
-

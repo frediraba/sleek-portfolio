@@ -49,9 +49,8 @@ const Hero: React.FC = () => {
         <Image
           src={darkMode ? "/images/coding-image2.jpg" : "/images/coding-image.jpg"}
           alt="Koodimise pilt"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
+          fill
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
           loading="lazy"
           className="opacity-30"
         />

@@ -18,6 +18,7 @@ const Contact: React.FC = () => {
       emailError: 'Please enter a valid email address.',
       messageError: 'Message must contain at least 10 characters.',
       successMessage: 'Message sent! Thank you for getting in touch.',
+      sendCopyLabel: 'Send me a copy to my email',
     },
     ee: {
       title: 'Võta minuga ühendust',
@@ -29,6 +30,7 @@ const Contact: React.FC = () => {
       emailError: 'Palun sisesta kehtiv e-posti aadress.',
       messageError: 'Sõnum peab sisaldama vähemalt 10 märki.',
       successMessage: 'Sõnum saadetud! Täname, et võtsid ühendust.',
+      sendCopyLabel: 'Soovin koopia e-mailile',
     },
   };
 
@@ -38,6 +40,7 @@ const Contact: React.FC = () => {
     name: '',
     email: '',
     message: '',
+    sendCopy: false,
   });
 
   const [errors, setErrors] = useState({
@@ -51,7 +54,7 @@ const Contact: React.FC = () => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.type === 'checkbox' ? (e.target as HTMLInputElement).checked : e.target.value });
     setErrors({ ...errors, [e.target.name]: '' }); // Clear the error when user starts typing
   };
 
@@ -87,6 +90,7 @@ const Contact: React.FC = () => {
         name: '',
         email: '',
         message: '',
+        sendCopy: false,
       });
       setTimeout(() => setSuccess(false), 5000); // Hide success message after 5 seconds
     }
@@ -116,7 +120,7 @@ const Contact: React.FC = () => {
             onChange={handleChange}
             placeholder={currentText.namePlaceholder}
             autoComplete="name"
-            className="p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-yellow-500 transition-colors duration-300"
+            className="p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-yellow-500 transition-colors duration-300 bg-gray-100 dark:bg-gray-300 text-gray-900 dark:text-black"
           />
           {errors.name && (
             <span className="text-red-500 dark:text-yellow-500">
@@ -130,7 +134,7 @@ const Contact: React.FC = () => {
             onChange={handleChange}
             placeholder={currentText.emailPlaceholder}
             autoComplete="email"
-            className="p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-yellow-500 transition-colors duration-300"
+            className="p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-yellow-500 transition-colors duration-300 bg-gray-100 dark:bg-gray-300 text-gray-900 dark:text-black"
           />
           {errors.email && (
             <span className="text-red-500 dark:text-yellow-500">
@@ -143,16 +147,28 @@ const Contact: React.FC = () => {
             onChange={handleChange}
             placeholder={currentText.messagePlaceholder}
             autoComplete="off"
-            className="p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-yellow-500 h-32 resize-none transition-colors duration-300"
+            className="p-4 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-yellow-500 h-32 resize-none transition-colors duration-300 bg-gray-100 dark:bg-gray-300 text-gray-900 dark:text-black"
           />
           {errors.message && (
             <span className="text-red-500 dark:text-yellow-500">
               {errors.message}
             </span>
           )}
+          <div className="flex items-center space-x-3">
+            <input
+              type="checkbox"
+              name="sendCopy"
+              checked={formData.sendCopy}
+              onChange={handleChange}
+              className="w-5 h-5 text-blue-500 dark:text-yellow-500 focus:ring-blue-500 dark:focus:ring-yellow-500"
+            />
+            <label htmlFor="sendCopy" className="text-lg font-semibold">
+              {currentText.sendCopyLabel}
+            </label>
+          </div>
           <button
             type="submit"
-            className="bg-blue-500 dark:bg-yellow-400 text-white dark:text-black py-4 px-8 rounded-md font-semibold hover:bg-blue-800 dark:hover:bg-yellow-400 hover:scale-105 transform transition-transform duration-300 ease-in-out"
+            className="bg-blue-500 dark:bg-yellow-500 text-white dark:text-black py-4 px-8 rounded-md font-semibold hover:bg-blue-700 dark:hover:bg-yellow-500 hover:scale-105 transform transition-transform duration-300 ease-in-out"
           >
             {currentText.sendButton}
           </button>

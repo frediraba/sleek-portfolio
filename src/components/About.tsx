@@ -32,7 +32,7 @@ const About: React.FC = () => {
     >
       <div className="flex-shrink-0 w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 mb-10 md:mb-0">
         <Image
-          src="/images/fredi-profile.png"
+          src="/images/fredi-profile.jpg"
           alt="Fredi Raba"
           width={400}
           height={400}
