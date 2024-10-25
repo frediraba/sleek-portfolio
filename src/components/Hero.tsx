@@ -30,17 +30,17 @@ const Hero: React.FC = () => {
       }`}
     >
       <div className="relative z-10 text-center max-w-3xl space-y-8 mt-16">
-        <h1 className="text-6xl md:text-7xl font-extrabold leading-tight tracking-wide animate-fade-in">
+        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-wide animate-fade-in">
           {currentText.title}
         </h1>
-        <p className="text-xl md:text-3xl font-light animate-fade-in delay-150">
+        <p className="text-lg md:text-2xl font-light animate-fade-in delay-150">
           {currentText.subtitle}
         </p>
         <a
           href="https://github.com/frediraba?tab=repositories"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block bg-gradient-to-r from-teal-400 to-blue-500 text-white px-10 py-4 rounded-full font-semibold shadow-md transition duration-300 transform hover:scale-105 hover:shadow-xl animate-bounce-once"
+          className="inline-block bg-gradient-to-r from-teal-400 to-blue-500 text-white px-6 py-3 md:px-10 md:py-4 rounded-full font-semibold shadow-md transition duration-300 transform hover:scale-105 hover:shadow-xl animate-bounce-once"
         >
           {currentText.buttonText}
         </a>

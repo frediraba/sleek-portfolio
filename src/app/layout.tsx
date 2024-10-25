@@ -54,10 +54,6 @@ export default function RootLayout({
     };
   }, []);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
   const validRoutes = ['/', '/about', '/projects', '/skills', '/contact'];
 
   if (!validRoutes.includes(pathname)) {
@@ -72,7 +68,7 @@ export default function RootLayout({
             {({ language, toggleLanguage }) => (
               <html lang={language} className={darkMode ? 'dark' : ''}>
                 <body className={`${geistSans.variable} ${geistMono.variable}`}>
-                  <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4 bg-gray-100 dark:bg-gray-800 shadow-md h-14">
+                  <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-2 bg-gray-100 dark:bg-gray-800 shadow-md h-14">
                     <div className="flex items-center space-x-3">
                       <button onClick={toggleLanguage} className="p-1 transition flex items-center space-x-1 hover:text-blue-800 dark:hover:text-yellow-300">
                         <GlobeAltIcon className="h-6 w-6 text-blue-500 dark:text-yellow-500 transition-colors hover:text-blue-800 dark:hover:text-yellow-300" />
@@ -81,46 +77,46 @@ export default function RootLayout({
                         </span>
                       </button>
                     </div>
-
-                    <div className="flex items-center md:hidden">
-                      <button onClick={toggleMenu} className="text-blue-500 dark:text-yellow-500 p-2">
-                        {menuOpen ? <XMarkIcon className="h-8 w-8" /> : <Bars3Icon className="h-8 w-8" />}
+                    <div className="lg:flex-grow lg:flex justify-center items-center space-x-2 hidden">
+                      <nav className="flex space-x-4">
+                        {['about', 'projects', 'skills', 'contact'].map((section) => (
+                          <ScrollLink
+                            key={section}
+                            to={section}
+                            smooth={true}
+                            duration={500}
+                            spy={true}
+                            className={`text-lg font-semibold cursor-pointer transition-colors ${
+                              activeSection === section
+                                ? 'text-blue-800 dark:text-yellow-300'
+                                : 'text-blue-500 dark:text-yellow-500'
+                            } hover:text-blue-800 dark:hover:text-yellow-300`}
+                          >
+                            {language === 'ee' ? (
+                              section === 'about'
+                                ? 'Minust'
+                                : section === 'projects'
+                                ? 'Projektid'
+                                : section === 'skills'
+                                ? 'Oskused'
+                                : 'E-mail'
+                            ) : (
+                              section.charAt(0).toUpperCase() + section.slice(1)
+                            )}
+                          </ScrollLink>
+                        ))}
+                      </nav>
+                    </div>
+                    <div className="flex items-center space-x-3 lg:hidden">
+                      <button onClick={() => setMenuOpen(!menuOpen)} className="p-1 transition">
+                        {menuOpen ? (
+                          <XMarkIcon className="h-6 w-6 text-blue-500 dark:text-yellow-500" />
+                        ) : (
+                          <Bars3Icon className="h-6 w-6 text-blue-500 dark:text-yellow-500" />
+                        )}
                       </button>
                     </div>
-
-                    <nav
-                      className={`${
-                        menuOpen ? 'flex' : 'hidden'
-                      } absolute top-14 left-0 right-0 bg-gray-100 dark:bg-gray-800 p-4 flex-col items-center space-y-4 md:static md:flex md:flex-row md:space-y-0 md:space-x-10 md:justify-center md:bg-transparent md:p-0 md:items-center md:flex-grow`}
-                    >
-                      {['about', 'projects', 'skills', 'contact'].map((section) => (
-                        <ScrollLink
-                          key={section}
-                          to={section}
-                          smooth={true}
-                          duration={500}
-                          spy={true}
-                          onClick={() => setMenuOpen(false)}
-                          className={`text-lg font-semibold cursor-pointer transition-colors ${
-                            activeSection === section || menuOpen
-                              ? 'text-blue-800 dark:text-yellow-300'
-                              : 'text-blue-500 dark:text-yellow-500'
-                          } hover:text-blue-800 dark:hover:text-yellow-300`}
-                        >
-                          {language === 'ee'
-                            ? section === 'about'
-                              ? 'Minust'
-                              : section === 'projects'
-                              ? 'Projektid'
-                              : section === 'skills'
-                              ? 'Oskused'
-                              : 'Kontakt'
-                            : section.charAt(0).toUpperCase() + section.slice(1)}
-                        </ScrollLink>
-                      ))}
-                    </nav>
-
-                    <div className="hidden md:flex items-center space-x-3">
+                    <div className="hidden lg:flex items-center space-x-3">
                       <button onClick={toggleDarkMode} className="p-1 transition hover:text-blue-800 dark:hover:text-yellow-300">
                         {darkMode ? (
                           <SunIcon className="h-6 w-6 text-yellow-500 transition-colors hover:text-blue-800 dark:hover:text-yellow-300" />
@@ -135,8 +131,49 @@ export default function RootLayout({
                         <FaGithub className="h-6 w-6 text-blue-500 dark:text-yellow-500 transition-colors hover:text-blue-800 dark:hover:text-yellow-300" />
                       </a>
                     </div>
+                    {menuOpen && (
+                      <div className="absolute top-14 right-0 w-48 p-4 bg-gray-100 dark:bg-gray-800 shadow-lg rounded-lg flex flex-col space-y-4 lg:hidden">
+                        <button onClick={toggleDarkMode} className="flex items-center justify-center text-lg font-semibold text-blue-500 dark:text-yellow-500 p-2 rounded-md bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                          {darkMode ? (
+                            <SunIcon className="h-6 w-6 mr-2" />
+                          ) : (
+                            <MoonIcon className="h-6 w-6 mr-2" />
+                          )}
+                          <span>{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
+                        </button>
+                        {['about', 'projects', 'skills', 'contact'].map((section) => (
+                          <ScrollLink
+                            key={section}
+                            to={section}
+                            smooth={true}
+                            duration={500}
+                            spy={true}
+                            className={`text-lg font-semibold cursor-pointer transition-colors text-center ${
+                              activeSection === section
+                                ? 'text-blue-800 dark:text-yellow-300'
+                                : 'text-blue-500 dark:text-yellow-500'
+                            } hover:text-blue-800 dark:hover:text-yellow-300`}
+                            onClick={() => setMenuOpen(false)}
+                          >
+                            {language === 'ee' ? (
+                              section === 'about'
+                                ? 'Minust'
+                                : section === 'projects'
+                                ? 'Projektid'
+                                : section === 'skills'
+                                ? 'Oskused'
+                                : 'E-mail'
+                            ) : (
+                              section.charAt(0).toUpperCase() + section.slice(1)
+                            )}
+                          </ScrollLink>
+                        ))}
+                      </div>
+                    )}
                   </header>
-                  <main className="mt-22 flex justify-center">{children}</main>
+                  <main className="mt-22 flex justify-center px-4 md:px-16 lg:px-24 xl:px-32">
+                    {children}
+                  </main>
                 </body>
               </html>
             )}
