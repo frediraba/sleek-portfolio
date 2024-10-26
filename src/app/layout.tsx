@@ -67,8 +67,8 @@ export default function RootLayout({
           <LanguageContext.Consumer>
             {({ language, toggleLanguage }) => (
               <html lang={language} className={darkMode ? 'dark' : ''}>
-                <body className={`${geistSans.variable} ${geistMono.variable}`}>
-                  <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-2 bg-gray-100 dark:bg-gray-800 shadow-md h-14">
+                <body className={`${geistSans.variable} ${geistMono.variable} w-full min-h-screen overflow-x-hidden`}>
+                  <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-2 bg-gray-100 dark:bg-gray-800 shadow-md h-14 w-full">
                     <div className="flex items-center space-x-3">
                       <button onClick={toggleLanguage} className="p-1 transition flex items-center space-x-1 hover:text-blue-800 dark:hover:text-yellow-300">
                         <GlobeAltIcon className="h-6 w-6 text-blue-500 dark:text-yellow-500 transition-colors hover:text-blue-800 dark:hover:text-yellow-300" />
@@ -77,8 +77,8 @@ export default function RootLayout({
                         </span>
                       </button>
                     </div>
-                    <div className="lg:flex-grow lg:flex justify-center items-center space-x-2 hidden">
-                      <nav className="flex space-x-4">
+                    <div className="lg:flex-grow lg:flex justify-center items-center space-x-0 hidden">
+                      <nav className= "flex-grow flex justify-center items-center space-x-8">
                         {['about', 'projects', 'skills', 'contact'].map((section) => (
                           <ScrollLink
                             key={section}
@@ -99,7 +99,7 @@ export default function RootLayout({
                                 ? 'Projektid'
                                 : section === 'skills'
                                 ? 'Oskused'
-                                : 'E-mail'
+                                : 'Kontakt'
                             ) : (
                               section.charAt(0).toUpperCase() + section.slice(1)
                             )}
@@ -171,9 +171,11 @@ export default function RootLayout({
                       </div>
                     )}
                   </header>
-                  <main className="mt-22 flex justify-center px-4 md:px-16 lg:px-24 xl:px-32">
-                    {children}
+                  <main className="mt-22 flex justify-center w-full max-w-full px-2 overflow-x-hidden">
+                   {children}
                   </main>
+
+
                 </body>
               </html>
             )}
